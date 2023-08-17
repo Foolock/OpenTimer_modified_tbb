@@ -1,0 +1,21 @@
+*******************thread = 11, circuit: aes_core*******************
+num_threads: 20
+original tbb runtime: 40561
+num_threads: 20
+original tbb runtime: 40806
+num_threads: 20
+original tbb runtime: 41032
+num_threads: 20
+original tbb runtime: 41734
+num_threads: 20
+original tbb runtime: 40723
+num_threads: 20
+original tbb runtime: 41247
+num_threads: 20
+original tbb runtime: 40933
+num_threads: 20
+original tbb runtime: 41127
+num_threads: 20
+original tbb runtime: 42608
+num_threads: 20
+original tbb runtime: 40601

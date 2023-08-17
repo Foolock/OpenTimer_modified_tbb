@@ -1,0 +1,21 @@
+*******************thread = 9, circuit: ac97_ctrl*******************
+num_threads: 9
+original taskflow runtime: 24191
+num_threads: 9
+original taskflow runtime: 24129
+num_threads: 9
+original taskflow runtime: 24006
+num_threads: 9
+original taskflow runtime: 23722
+num_threads: 9
+original taskflow runtime: 25465
+num_threads: 9
+original taskflow runtime: 23831
+num_threads: 9
+original taskflow runtime: 25500
+num_threads: 9
+original taskflow runtime: 24656
+num_threads: 9
+original taskflow runtime: 24758
+num_threads: 9
+original taskflow runtime: 25282

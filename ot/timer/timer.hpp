@@ -18,8 +18,22 @@
 #include <ot/verilog/verilog.hpp>
 #include <ot/sdc/sdc.hpp>
 #include <ot/tau/tau15.hpp>
+#include "levelgraph.hpp"
+#include <tbb/global_control.h>
+#include <tbb/flow_graph.h>
 
 namespace ot {
+
+class Eric {
+  public:
+    
+    ~Eric() {
+      std::cerr << "destructing Eric...\n";
+    }
+    Eric() = default;
+
+    int a = 1;
+};
 
 // Class: Timer
 class Timer {
@@ -32,7 +46,20 @@ class Timer {
   constexpr static int POWER_UPDATED = 0x08;
 
   public:
-    
+  
+    Timer() {
+//      tbb::global_control c(
+//        tbb::global_control::max_allowed_parallelism, 2 
+//      );
+    }
+
+    ~Timer() {
+
+      std::cout << "num_threads: " << _executor.num_workers() << "\n";
+      std::cout << "original tbb runtime: " << original_runtime << "\n";
+
+    }  
+
     // Builder
     Timer& set_num_threads(unsigned);
     Timer& read_celllib(std::filesystem::path, std::optional<Split> = {});
@@ -126,6 +153,21 @@ class Timer {
     inline const auto& arcs() const;
 
   private:
+  
+    // execute the task manually to check DAG correctness
+    void _execute_task_manually();
+
+    // build_prop_tasks using tbb
+    void _build_prop_tasks_tbb();
+
+    // reset tbb parameters
+    void _reset_tbb();
+
+    void _traverse_regular_graph_tbb(LevelGraph& graph, unsigned num_threads);
+
+    std::chrono::microseconds _measure_time_tbb(LevelGraph& graph, unsigned num_threads);
+
+    size_t original_runtime = 0;
 
     mutable std::shared_mutex _mutex;
 

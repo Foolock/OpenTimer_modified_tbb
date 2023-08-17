@@ -1,0 +1,21 @@
+*******************thread = 1, circuit: des_perf*******************
+num_threads: 1
+original taskflow runtime: 771396
+num_threads: 1
+original taskflow runtime: 771371
+num_threads: 1
+original taskflow runtime: 762884
+num_threads: 1
+original taskflow runtime: 777555
+num_threads: 1
+original taskflow runtime: 773761
+num_threads: 1
+original taskflow runtime: 757726
+num_threads: 1
+original taskflow runtime: 760012
+num_threads: 1
+original taskflow runtime: 779129
+num_threads: 1
+original taskflow runtime: 755137
+num_threads: 1
+original taskflow runtime: 758783

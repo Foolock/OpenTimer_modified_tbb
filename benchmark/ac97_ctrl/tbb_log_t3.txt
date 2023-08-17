@@ -1,0 +1,21 @@
+*******************thread = 3, circuit: ac97_ctrl*******************
+num_threads: 20
+original tbb runtime: 33904
+num_threads: 20
+original tbb runtime: 33808
+num_threads: 20
+original tbb runtime: 33983
+num_threads: 20
+original tbb runtime: 33416
+num_threads: 20
+original tbb runtime: 33788
+num_threads: 20
+original tbb runtime: 33287
+num_threads: 20
+original tbb runtime: 33819
+num_threads: 20
+original tbb runtime: 33421
+num_threads: 20
+original tbb runtime: 33503
+num_threads: 20
+original tbb runtime: 34013

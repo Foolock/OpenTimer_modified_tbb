@@ -1,0 +1,21 @@
+*******************thread = 8, circuit: des_perf*******************
+num_threads: 20
+original tbb runtime: 139015
+num_threads: 20
+original tbb runtime: 139674
+num_threads: 20
+original tbb runtime: 137426
+num_threads: 20
+original tbb runtime: 139405
+num_threads: 20
+original tbb runtime: 148917
+num_threads: 20
+original tbb runtime: 141814
+num_threads: 20
+original tbb runtime: 141359
+num_threads: 20
+original tbb runtime: 138590
+num_threads: 20
+original tbb runtime: 143674
+num_threads: 20
+original tbb runtime: 146799

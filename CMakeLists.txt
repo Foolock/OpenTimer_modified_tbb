@@ -157,6 +157,29 @@ set(OT_CPP
 # Add OpenTimer library
 add_library(OpenTimer ${OT_CPP})
 
+# -----------------------------------------------------------------------------
+# tbb package
+# -----------------------------------------------------------------------------
+cmake_policy(PUSH)
+cmake_policy(SET CMP0074 NEW)
+if(NOT DEFINED TBB_ROOT_DIR)
+  set(TBB_ROOT_DIR ${PROJECT_SOURCE_DIR}/tbb/)
+endif()
+
+if(NOT DEFINED TBB_INCLUDE_DIR)
+  set(TBB_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/tbb/include/)
+endif()
+
+include_directories(${TBB_INCLUDE_DIR})
+
+include(${TBB_ROOT_DIR}/cmake/TBBBuild.cmake)
+#tbb_build(TBB_ROOT ${TBB_ROOT_DIR} CONFIG_DIR TBB_DIR MAKE_ARGS tbb_cpf=1)
+tbb_build(TBB_ROOT ${TBB_ROOT_DIR} CONFIG_DIR TBB_DIR)
+unset(TBB_ROOT)  # unset is needed to pop CMP0074 without warning
+cmake_policy(POP)
+#find_package(TBB REQUIRED tbb_preview)
+find_package(TBB REQUIRED)
+
 
 ###########################################################
 # Executables
@@ -167,6 +190,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 list(APPEND OT_LINK_FLAGS "")
 list(APPEND OT_LINK_FLAGS OpenTimer)
 list(APPEND OT_LINK_FLAGS Threads::Threads)
+list(APPEND OT_LINK_FLAGS TBB::tbb)
 if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "10.0")
   list(APPEND OT_LINK_FLAGS stdc++fs)
 endif()

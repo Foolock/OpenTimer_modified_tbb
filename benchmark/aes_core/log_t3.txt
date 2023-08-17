@@ -1,0 +1,21 @@
+*******************thread = 3, circuit: aes_core*******************
+num_threads: 3
+original taskflow runtime: 79876
+num_threads: 3
+original taskflow runtime: 78332
+num_threads: 3
+original taskflow runtime: 79209
+num_threads: 3
+original taskflow runtime: 77128
+num_threads: 3
+original taskflow runtime: 84410
+num_threads: 3
+original taskflow runtime: 79765
+num_threads: 3
+original taskflow runtime: 79635
+num_threads: 3
+original taskflow runtime: 79486
+num_threads: 3
+original taskflow runtime: 80596
+num_threads: 3
+original taskflow runtime: 79494

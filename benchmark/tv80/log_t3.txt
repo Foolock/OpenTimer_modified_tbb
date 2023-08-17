@@ -1,0 +1,21 @@
+*******************thread = 3, circuit: tv80*******************
+num_threads: 3
+original taskflow runtime: 17884
+num_threads: 3
+original taskflow runtime: 16569
+num_threads: 3
+original taskflow runtime: 17243
+num_threads: 3
+original taskflow runtime: 17458
+num_threads: 3
+original taskflow runtime: 17464
+num_threads: 3
+original taskflow runtime: 18838
+num_threads: 3
+original taskflow runtime: 17467
+num_threads: 3
+original taskflow runtime: 19124
+num_threads: 3
+original taskflow runtime: 19049
+num_threads: 3
+original taskflow runtime: 17177

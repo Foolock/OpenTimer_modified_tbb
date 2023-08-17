@@ -925,7 +925,7 @@ void Timer::_build_prop_tasks() {
       _fprop_test(*pin);
     });
   }
-  
+
   // Build the dependency
   for(auto to : _fprop_cands) {
     for(auto arc : to->_fanin) {
@@ -968,6 +968,64 @@ void Timer::_build_prop_tasks() {
 
 }
 
+// Procedure: _build_prop_tasks
+void Timer::_build_prop_tasks_tbb() {
+  
+  tbb::global_control c(
+    tbb::global_control::max_allowed_parallelism, std::thread::hardware_concurrency() 
+  );
+  
+  std::vector<std::unique_ptr<continue_node<continue_msg>>> ftasks(_fprop_cands.size()); 
+
+  std::unordered_map<Pin*, int> fpin_map;
+
+  for(size_t i=0; i<_fprop_cands.size(); i++) {
+    fpin_map[_fprop_cands[i]] = i;
+  }
+
+  tbb::flow::graph G;
+  std::unique_ptr<continue_node<continue_msg>> fsource;
+
+  int index = 0;
+  for(auto pin : _fprop_cands) {
+    ftasks[index] = std::make_unique<continue_node<continue_msg>>(G,
+      [this, pin](const continue_msg&) mutable{ 
+        _fprop_rc_timing(*pin);
+        _fprop_slew(*pin);
+        _fprop_delay(*pin);
+        _fprop_at(*pin);
+        _fprop_test(*pin); 
+      }
+    );
+    index++;
+  }
+
+  for(auto from : _fprop_cands) {
+    for(auto arc : from->_fanout) {
+      Pin* to = &(arc->_to);
+      if(to->_has_state(Pin::FPROP_CAND)) {
+        make_edge(*(ftasks[fpin_map[from]]), *(ftasks[fpin_map[to]]));
+      }
+    }
+  }
+
+  fsource = std::make_unique<continue_node<continue_msg>>(G,
+    [](const continue_msg&){}
+  );
+
+  for(auto pin : _fprop_cands) {
+    if(pin->_fanin.size() == 0) {
+      make_edge(*fsource, *(ftasks[fpin_map[pin]]));
+    }
+  }
+
+  fsource->try_put(continue_msg());
+  auto start = std::chrono::steady_clock::now();
+  G.wait_for_all();
+  auto end = std::chrono::steady_clock::now();
+  original_runtime += std::chrono::duration_cast<std::chrono::microseconds>(end-start).count(); 
+}
+
 // Procedure: _clear_prop_tasks
 void Timer::_clear_prop_tasks() {
   
@@ -1006,20 +1064,20 @@ void Timer::_update_timing() {
   _lineage.reset();
   
   // Check if full update is required
-  if(_has_state(FULL_TIMING)) {
+//  if(_has_state(FULL_TIMING)) {
     _insert_full_timing_frontiers();
-  }
+//  }
 
   // build propagation tasks
-  _build_prop_tasks();
-
-  // debug the graph
-  //_taskflow.dump(std::cout);
-
-  // Execute the task
-  _executor.run(_taskflow).wait();
-  _taskflow.clear();
+//  _build_prop_tasks();
   
+  // explore propagation candidates
+  _build_prop_cands();
+
+  _build_prop_tasks_tbb();
+
+  _execute_task_manually(); 
+
   // Clear the propagation tasks.
   _clear_prop_tasks();
 
@@ -1028,6 +1086,24 @@ void Timer::_update_timing() {
 
   // clear the state
   _remove_state();
+
+}
+
+void Timer::_execute_task_manually() {
+//  for(auto pin : _fprop_cands) {
+//    _fprop_rc_timing(*pin); // 5 typical tasks for a p to update timing in forward propagation // most time consuming if p has net
+//    _fprop_slew(*pin);
+//    _fprop_delay(*pin);
+//    _fprop_at(*pin);
+//    _fprop_test(*pin);
+//  }
+  for(auto pin : _bprop_cands) {
+    _bprop_rat(*pin); // 1 typical task for a p to update timing in backward progragation
+  }
+}
+
+void Timer::_reset_tbb() {
+ 
 }
 
 // Procedure: _update_area

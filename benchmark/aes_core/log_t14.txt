@@ -1,0 +1,21 @@
+*******************thread = 14, circuit: aes_core*******************
+num_threads: 14
+original taskflow runtime: 44922
+num_threads: 14
+original taskflow runtime: 44836
+num_threads: 14
+original taskflow runtime: 45630
+num_threads: 14
+original taskflow runtime: 44819
+num_threads: 14
+original taskflow runtime: 45320
+num_threads: 14
+original taskflow runtime: 45783
+num_threads: 14
+original taskflow runtime: 48380
+num_threads: 14
+original taskflow runtime: 44968
+num_threads: 14
+original taskflow runtime: 45127
+num_threads: 14
+original taskflow runtime: 44438

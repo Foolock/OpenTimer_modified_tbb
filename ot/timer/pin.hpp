@@ -2,6 +2,11 @@
 #define OT_TIMER_PIN_HPP_
 
 #include <ot/liberty/celllib.hpp>
+#include <tbb/global_control.h>
+#include <tbb/flow_graph.h>
+
+using namespace tbb;
+using namespace tbb::flow;
 
 namespace ot {
 

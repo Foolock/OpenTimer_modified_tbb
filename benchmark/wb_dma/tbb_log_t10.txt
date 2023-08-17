@@ -1,0 +1,21 @@
+*******************thread = 10, circuit: wb_dma*******************
+num_threads: 20
+original tbb runtime: 9396
+num_threads: 20
+original tbb runtime: 8956
+num_threads: 20
+original tbb runtime: 13227
+num_threads: 20
+original tbb runtime: 9383
+num_threads: 20
+original tbb runtime: 16900
+num_threads: 20
+original tbb runtime: 8717
+num_threads: 20
+original tbb runtime: 9001
+num_threads: 20
+original tbb runtime: 17410
+num_threads: 20
+original tbb runtime: 30171
+num_threads: 20
+original tbb runtime: 8827

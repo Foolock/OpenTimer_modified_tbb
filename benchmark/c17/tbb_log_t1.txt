@@ -1,0 +1,21 @@
+*******************thread = 1, circuit: c17*******************
+num_threads: 20
+original tbb runtime: 56
+num_threads: 20
+original tbb runtime: 56
+num_threads: 20
+original tbb runtime: 51
+num_threads: 20
+original tbb runtime: 50
+num_threads: 20
+original tbb runtime: 51
+num_threads: 20
+original tbb runtime: 52
+num_threads: 20
+original tbb runtime: 54
+num_threads: 20
+original tbb runtime: 87
+num_threads: 20
+original tbb runtime: 53
+num_threads: 20
+original tbb runtime: 51
